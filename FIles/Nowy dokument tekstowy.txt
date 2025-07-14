@@ -1,0 +1,153 @@
+1. Pakiet BASIC 
+Krok	Za co Klient płaci	Co dokładnie dostaje / co robimy
+1	Hostowanie instancji voicebota	Utrzymanie serwera w chmurze UE, dzienna kopia zapasowa bazy dialogów i konfiguracji.
+2	Aktualizacje bezpieczeństwa i wersji	Patchowanie OS i silnika voice-AI raz w miesiącu (tzw. scheduled maintenance – komunikowane z 48 h wyprzedzeniem).
+3	Monitoring dostępności	Automatyczne sprawdzanie „czy żyje” (ping, testowe połączenie) co 5 min; alert mailowy do zespołu, gdy system jest offline > 5 min.
+4	Wsparcie w dni robocze (9-17)	Kanał e-mail/ticket; czas pierwszej reakcji ≤ 24 h; eskalacja wg kolejki.
+5	Panel administracyjny	Podgląd logów, statystyk podstawowych (liczba połączeń, średni czas rozmowy).
+6	Comiesięczny raport PDF	Zestawienie KPI + lista zgłoszeń serwisowych.
+7	Dokumentacja online	Instrukcja konfiguracji, FAQ dla recepcji.
+________________________________________
+2. Pakiet STANDARD 
+Krok	Za co Klient płaci	Co dokładnie dostaje / co robimy
+1	Wszystko z BASIC	Identyczny zakres hostingu, kopii zapasowych i aktualizacji.
+2	Rozszerzone godziny wsparcia (8-18)	Kontakt e-mail i telefon; czas reakcji ≤ 8 h w oknie wsparcia.
+3	Proaktywny monitoring	Ciągłe śledzenie metryk (CPU, ASR-latency, błędy HTTP); powiadamiamy Klienta o incydencie, zanim wpłynie zgłoszenie.
+4	Szybsza eskalacja	Incydenty Priorytetu 1 trafiają od razu do inżyniera L2 (bez czekania w kolejce).
+5	Kwartalna aktualizacja dialogów	Raz na kwartał bezpłatnie importujemy poprawioną bazę FAQ przekazaną przez placówkę.
+6	Raport rozszerzony	Dodatkowo: wykres godzin szczytu, TOP 10 nie-rozpoznanych fraz, rekomendacje poprawek.
+________________________________________
+3. Pakiet PREMIUM → 
+Krok	Za co Klient płaci	Co dokładnie dostaje / co robimy
+1	Wszystko ze STANDARD	Pełen wcześniejszy zakres.
+2	Rozszerzone okno wsparcia (7-21, pn-pt) + awarie 24/7	Telefon / e-mail / Slack; incydenty P1 obsługujemy również nocą i weekendy.
+3	SLA czas reakcji ≤ 4 h (P1 ≤ 1 h)	Umownie gwarantujemy podjęcie działań maks. w 4 h dla P2/P3 i w 1 h dla krytycznych awarii.
+4	Zaawansowany monitoring 24/7	Alerty SMS do inżyniera on-call, syntetyczne testy połączeń co 2 min, dashboard on-line udostępniony Klientowi.
+5	Miesięczne przeglądy jakości	1 × mies. spotkanie online (30 min) z analitykiem, omówienie KPI, plan tuningu bota.
+6	Drobne zmiany skryptów (2 h/msc w cenie)	Szybkie poprawki treści, zamiana komunikatów, dodanie prostych reguł.
+7	Wersjonowanie i rollback	Możliwość cofnięcia bota do poprzedniej stabilnej wersji w 15 min po zgłoszeniu.
+________________________________________
+4. Pakiet ENTERPRISE → 
+Krok	Za co Klient płaci	Co dokładnie dostaje / co robimy
+1	Wszystko z PREMIUM	Cały poprzedni zakres.
+2	Wsparcie pełne 24/7/365	Dedykowana infolinia, inżynier on-call, priorytet w kolejce dev-ops.
+3	SLA reakcji ≤ 1 h (P1 ≤ 30 min)	Obejmuje również czasy przywrócenia (MTTR target ≤ 2 h dla P1).
+4	Gwarancja dostępności ≥ 99,9 %	
+5	Technical Account Manager (TAM)	Stały opiekun techniczny (1 spotkanie kwartalne on-site/on-line + bieżąca koordynacja).
+6	Priorytetowe aktualizacje i funkcje beta	Wcześniejszy dostęp do nowych modułów, hot-fixy wdrażane natychmiast po testach QA.
+7	Zaawansowane raporty tygodniowe	Dashboardy SLA, szczegółowe KPI 
+8	Testy penetracyjne raz w roku	Zewnętrzny pentest + raport dla Klienta (w cenie pakietu).
+9	Dedicated staging env.	Oddzielne środowisko testowe dla Klienta (koperta danych), gdzie można weryfikować zmiany dialogów bez wpływu na produkcję.
+10	On-site szkolenia personelu (opcjonalne 1×/rok)	Warsztaty dla rejestracji: „praca z voicebotem + zarządzanie przekierowaniami”.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Opłata wdrożeniowa – integracja „szyta na miarę” z CRM/HIS
+#	Etap prac	Co otrzymuje Klient	Koszt netto (PLN)
+1	Kick‑off & analiza procesów (2–4 h warsztat online)	mapa procesu rejestracji, plan testów, harmonogram	2 000 – 4 000
+2	Analiza API CRM/HIS	specyfikacja end‑pointów, uzgodniona autoryzacja	3 000 – 6 000
+3	Projekt architektury & diagram przepływu danych	schemat integracji, polityka RODO	2 000 – 4 000
+4	Konfiguracja telekom/SIP	numer IVR, routing, konto trunk testowe	1 000 – 3 000
+5	Implementacja konektora (REST/FHIR/HL7/CSV)	dedykowany mikroserwis z logowaniem	6 000 – 20 000 +
+6	Testy integracyjne	check‑lista CRUD, logi, proof‑of‑concept	2 000 – 6 000
+7	UAT – testy akceptacyjne z personelem	1–2 dni test‑calli, lista poprawek, protokół odbioru	2 000 – 4 000
+8	Przeniesienie na produkcję & monitoring startowy (7 dni)	produkcyjne uruchomienie, alerty 24/7	2 000 – 4 000
+9	Szkolenie + dokumentacja PDF	webinar 2 h, instrukcje krok‑po‑kroku	1 000 – 2 000
+Szacunkowe pakiety cenowe (jednorazowo)
+Typ placówki	Zakres integracji	Łączny koszt netto
+Gabinet (prosty CRM)	1‑kierunkowa synchronizacja	16 000 – 20 000
+Średnia klinika 	2‑kierunkowa + harmonogramy lekarzy	24 000 – 36 000
+Szpital / sieć klinik	FHIR/HL7, VPN, staging, HA	od 60 000 zł
+Wszystkie ceny zawierają 2‑krotność bazowych stawek i są orientacyjne – finalna wycena zależy od złożoności integracji i wymagań bezpieczeństwa.
+________________________________________
+
+
+Wyjaśnienie kluczowych terminów
+Termin	Znaczenie praktyczne w projekcie
+1‑kierunkowa synchronizacja	Voicebot tylko odczytuje dane z systemu kliniki (np. wolne terminy) i zapisuje rezerwację w swojej kolejce. Zmiany trafiają do recepcji do ręcznego potwierdzenia – brak zapisu bezpośrednio w CRM/HIS.
+2‑kierunkowa synchronizacja	Voicebot czyta i zapisuje. Po umówieniu, przełożeniu lub anulowaniu wizyty zapis następuje natychmiast w CRM/HIS, dzięki czemu kalendarz lekarza jest w czasie rzeczywistym.
+FHIR / HL7	Międzynarodowe standardy wymiany danych medycznych. HL7 v2 (komunikaty tekstowe), FHIR (REST + JSON). Umożliwiają interoperacyjność między voicebotem a szpitalnym systemem EMR.
+VPN	Szyfrowany tunel IPsec/SSL pomiędzy serwerem voicebota a siecią szpitala. Zapewnia, że ruch API/HL7 nie wychodzi przez publiczny Internet.
+Staging	Oddzielne, bezpieczne środowisko testowe z kopią konfiguracji klienta. Pozwala weryfikować nowe wersje konektora lub dialogów, zanim trafią na produkcję.
+HA (High Availability)	Architektura wysokiej dostępności: klaster ≥ 2 instancje + load‑balancer, replikacja bazy i automatyczny fail‑over. Zapewnia ciągłość działania (SLA 99,9 %+).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Składniki pakietów – krok po kroku
+#	Składnik kosztu	Basic	Standard	Premium	Enterprise
+1	Hosting instancji	1 vCPU / 2 GB	2 vCPU / 4 GB	Klaster HA 	HA (x2)
+2	Kopie zapasowe	Dziennie, 7 dni	Dziennie, 30 dni	Dziennie, 90 dni + off‑site	Co 4 h; 90 dni + off‑site
+3	Monitoring	Ping 5 min	Ping + CPU/latency	24/7 + alert SMS	24/7 + syntetyczne call test
+4	Aktualizacje bezpieczeństwa	Co 30 dni	Co 14 dni	Co 7 dni + hot‑fix	Natychmiast / zero‑downtime
+5	Utrzymanie konektora	Poprawki ≤ 1 h/msc	≤ 3 h/msc	≤ 6 h/msc	Bez limitu (fair‑use)
+6	Wsparcie techniczne	Mail / ticket	+ Telefon	+ Slack / Teams	TAM + tel. 24/7
+7	Raporty KPI	Mies. PDF	PDF + CSV	Interaktywny dashboard	Dashboard + tyg. raport
+8	Audyt bezpieczeństwa	Co 2 lata (remote)	Co rok (remote)	Co rok + pentest	Co rok on‑site pentest
+9	Szkolenia personelu	E‑learning	1 webinar/rok	2 webinary + QBR	On‑site + QBR
+10	Gwarancja dostępności	99,0 %	99,5 %	99,8 %	99,9 %
+
+________________________________________
+
+
+Wyjaśnienie terminów technicznych
+Termin	Znaczenie praktyczne
+Hosting instancji	Dedykowany serwer (vCPU / RAM) w regionie UE – nie współdzielony z innymi klientami.
+Klaster HA	Co najmniej dwie równoległe instancje z load‑balancerem; w razie awarii jedna przejmuje ruch bez przerwy.
+Geo‑redundancja	Kopia instancji w innym ośrodku DC (np. Frankfurt + Warszawa); odporność na awarię całej strefy.
+Monitoring syntetyczny	Automatyczne, cykliczne testowe połączenia do bota (call‑flow), wykrywające ukryte błędy dialogu.
+Hot‑fix	Krytyczna poprawka bezpieczeństwa lub stabilności wdrażana poza oknem serwisowym, bez przerwy działania.
+TAM – Technical Account Manager	Dedykowany inżynier‑opiekun; zna infrastrukturę klienta, bierze udział w cotygodniowych lub comiesięcznych przeglądach.
+QBR – Quarterly Business Review	Kwartalne spotkanie strategiczne: omówienie KPI, roadmapy funkcji, rekomendacje optymalizacji.
+SLA P1	Incydent Priorytetu 1 – całkowita niedostępność lub krytyczna funkcja niedziałająca; reakcja eskalowana wg tabeli.
+
