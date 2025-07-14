@@ -496,6 +496,15 @@
     .mobile-pricing-comparison {
         display: none;
     }
+    
+    /* Desktop button text */
+    .btn-text-full {
+        display: inline;
+    }
+    
+    .btn-text-short {
+        display: none;
+    }
 }
 
 /* Enhanced touch targets */
@@ -575,6 +584,15 @@
     .section-subtitle {
         font-size: 1rem;
         line-height: 1.5;
+    }
+    
+    /* Responsive button text */
+    .btn-text-full {
+        display: none;
+    }
+    
+    .btn-text-short {
+        display: inline;
     }
     
     /* Responsive spacing */
