@@ -27,6 +27,11 @@ function initNavigation() {
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        
+        // Update ARIA attributes
+        const isActive = hamburger.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isActive);
+        navMenu.setAttribute('aria-hidden', !isActive);
     });
     
     // Close mobile menu when clicking on nav links
@@ -34,6 +39,10 @@ function initNavigation() {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', false);
+            navMenu.setAttribute('aria-hidden', true);
         });
     });
     
@@ -42,6 +51,25 @@ function initNavigation() {
         if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', false);
+            navMenu.setAttribute('aria-hidden', true);
+        }
+    });
+    
+    // Close mobile menu on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', false);
+            navMenu.setAttribute('aria-hidden', true);
+            
+            // Return focus to hamburger button
+            hamburger.focus();
         }
     });
     

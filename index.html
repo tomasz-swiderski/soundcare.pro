@@ -1,26 +1,82 @@
-﻿<!DOCTYPE html>
-<html lang="pl">
+<!DOCTYPE html>
+<html lang="pl" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundCare - Inteligentny Asystent Głosowy dla Twojej Firmy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>SoundCare - Inteligentny Asystent Głosowy 24/7</title>
     <meta name="description" content="Automatyzuj obsługę klienta z naszym inteligentnym asystentem głosowym. Dostępny 24/7, automatyczne rezerwacje, integracja z kalendarzem.">
+    <meta name="keywords" content="voice bot, asystent głosowy, automatyzacja, obsługa klienta, AI, rezerwacje, kalendarz">
+    <meta name="author" content="SoundCare">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="public/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/favicon.ico">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="SoundCare - Inteligentny Asystent Głosowy 24/7">
+    <meta property="og:description" content="Automatyzuj obsługę klienta z naszym inteligentnym asystentem głosowym. Dostępny 24/7, automatyczne rezerwacje, integracja z kalendarzem.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundcare.pro">
+    <meta property="og:image" content="https://soundcare.pro/images/soundcare-og-image.jpg">
+    <meta property="og:site_name" content="SoundCare">
+    <meta property="og:locale" content="pl_PL">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SoundCare - Inteligentny Asystent Głosowy 24/7">
+    <meta name="twitter:description" content="Automatyzuj obsługę klienta z naszym inteligentnym asystentem głosowym. Dostępny 24/7, automatyczne rezerwacje, integracja z kalendarzem.">
+    <meta name="twitter:image" content="https://soundcare.pro/images/soundcare-og-image.jpg">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SoundCare",
+      "url": "https://soundcare.pro",
+      "logo": "https://soundcare.pro/images/soundcare.pro.png",
+      "description": "Inteligentne rozwiązania głosowe dla nowoczesnych firm. Automatyzuj obsługę klienta i skup się na rozwoju biznesu.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+48539000909",
+        "contactType": "customer service",
+        "email": "biuro@soundcare.pro"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warszawa",
+        "addressCountry": "PL"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/108178758"
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="pricing-enhanced-styles.css">
+    <link rel="stylesheet" href="accessibility-improvements.css">
+    <link rel="stylesheet" href="mobile-responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
     <!-- NAVIGATION -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Główna nawigacja">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="images/soundcare.pro.png" alt="SoundCare Logo" class="nav-logo-img">
+                <img src="images/soundcare.pro.png" alt="SoundCare - Inteligentny Asystent Głosowy - Logo firmy" class="nav-logo-img">
                 <span>SoundCare</span>
             </div>
-            <div class="nav-menu" id="nav-menu">
+            <div class="nav-menu" id="nav-menu" aria-hidden="true">
                 <a href="#hero" class="nav-link">Strona Główna</a>
                 <a href="#business-types" class="nav-link">Branże</a>
                 <a href="#comparison" class="nav-link">Porównanie</a>
@@ -30,15 +86,16 @@
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#contact" class="nav-link">Kontakt</a>
             </div>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Otwórz menu nawigacyjne" aria-expanded="false" aria-controls="nav-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
+            </button>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
+    <main id="main-content">
     <section id="hero" class="hero">
         <div class="hero-background"></div>
         <div class="container">
@@ -61,27 +118,27 @@
                     </div>
                     
                     <div class="hero-buttons">
-                        <button class="btn btn-primary btn-large">
-                            <i class="fas fa-calendar-check"></i>
+                        <button class="btn btn-primary btn-large" aria-label="Umów bezpłatne demo SoundCare">
+                            <i class="fas fa-calendar-check" aria-hidden="true"></i>
                             <span>Umów Bezpłatne Demo</span>
                         </button>
-                        <button class="btn btn-secondary btn-large">
-                            <i class="fas fa-play"></i>
+                        <button class="btn btn-secondary btn-large" aria-label="Zobacz SoundCare w akcji">
+                            <i class="fas fa-play" aria-hidden="true"></i>
                             <span>Zobacz w Akcji</span>
                         </button>
                     </div>
                     
                     <div class="hero-features">
                         <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
                             <span>Wdrożenie w 24h</span>
                         </div>
                         <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
                             <span>Bez długoterminowych umów</span>
                         </div>
                         <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
                             <span>RODO compliant</span>
                         </div>
                     </div>
@@ -122,7 +179,7 @@
                                         <div class="call-content">
                                             <div class="caller-info">
                                                 <div class="avatar-large">
-                                                    <i class="fas fa-robot"></i>
+                                                    <i class="fas fa-robot" aria-hidden="true"></i>
                                                     <div class="pulse-ring"></div>
                                                     <div class="pulse-ring pulse-ring-delay"></div>
                                                 </div>
@@ -145,14 +202,14 @@
                                             </div>
                                             
                                             <div class="call-actions">
-                                                <button class="action-btn">
-                                                    <i class="fas fa-microphone-slash"></i>
+                                                <button class="action-btn" aria-label="Wycisz mikrofon">
+                                                    <i class="fas fa-microphone-slash" aria-hidden="true"></i>
                                                 </button>
-                                                <button class="action-btn end-call">
-                                                    <i class="fas fa-phone"></i>
+                                                <button class="action-btn end-call" aria-label="Zakończ rozmowę">
+                                                    <i class="fas fa-phone" aria-hidden="true"></i>
                                                 </button>
-                                                <button class="action-btn">
-                                                    <i class="fas fa-volume-up"></i>
+                                                <button class="action-btn" aria-label="Zmień głośność">
+                                                    <i class="fas fa-volume-up" aria-hidden="true"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -242,7 +299,7 @@
                     <!-- Medical Content -->
                     <div class="business-display-content active" id="content-medical">
                         <div class="business-image">
-                            <img src="Public/ai-technology-future.png" alt="Technologia AI w medycynie" class="business-placeholder">
+                            <img src="Public/ai-technology-future.png" alt="Nowoczesna technologia AI dla klinik i przychodni medycznych - automatyzacja obsługi pacjentów" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">😊</span>
                                 <span class="testimonial-text">Wiele zadań - jedno rozwiązanie.</span>
@@ -261,7 +318,7 @@
                     <!-- Hospitality Content -->
                     <div class="business-display-content" id="content-hospitality">
                         <div class="business-image">
-                            <img src="Public/customer-service-professional.png" alt="Hotel i restauracja" class="business-placeholder">
+                            <img src="Public/customer-service-professional.png" alt="Profesjonalna obsługa klientów w hotelach i restauracjach - rezerwacje 24/7" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">🏨</span>
                                 <span class="testimonial-text">Rezerwacje 24/7 bez personelu recepcji.</span>
@@ -280,7 +337,7 @@
                     <!-- Beauty Content -->
                     <div class="business-display-content" id="content-beauty">
                         <div class="business-image">
-                            <img src="Public/professional-consultation.png" alt="Salon kosmetyczny" class="business-placeholder">
+                            <img src="Public/professional-consultation.png" alt="Inteligentny system rezerwacji dla salonów kosmetycznych - umawianie wizyt automatyczne" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">💅</span>
                                 <span class="testimonial-text">Klientki mogą umówić się nawet w nocy.</span>
@@ -299,7 +356,7 @@
                     <!-- Automotive Content -->
                     <div class="business-display-content" id="content-automotive">
                         <div class="business-image">
-                            <img src="Public/business-growth-success.png" alt="Warsztat samochodowy" class="business-placeholder">
+                            <img src="Public/business-growth-success.png" alt="Automatyzacja obsługi klientów w warsztatach samochodowych - umowy na przeglądy" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">🔧</span>
                                 <span class="testimonial-text">Klienci dzwonią gdy mają czas.</span>
@@ -318,7 +375,7 @@
                     <!-- Legal Content -->
                     <div class="business-display-content" id="content-legal">
                         <div class="business-image">
-                            <img src="Public/business-meeting-teamwork.png" alt="Kancelaria prawna" class="business-placeholder">
+                            <img src="Public/business-meeting-teamwork.png" alt="Profesjonalna obsługa klientów w kancelariach prawnych - dyskretne umowy konsultacji" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">⚖️</span>
                                 <span class="testimonial-text">Profesjonalna obsługa na każdą porę.</span>
@@ -337,7 +394,7 @@
                     <!-- Fitness Content -->
                     <div class="business-display-content" id="content-fitness">
                         <div class="business-image">
-                            <img src="Public/modern-office-workspace.png" alt="Centrum fitness" class="business-placeholder">
+                            <img src="Public/modern-office-workspace.png" alt="Nowoczesne centrum fitness z automatycznym systemem rezerwacji treningów personalnych" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">💪</span>
                                 <span class="testimonial-text">Trening można umówić po treningu.</span>
@@ -356,7 +413,7 @@
                     <!-- Veterinary Content -->
                     <div class="business-display-content" id="content-veterinary">
                         <div class="business-image">
-                            <img src="Public/call-center-operations.png" alt="Gabinet weterynaryjny" class="business-placeholder">
+                            <img src="Public/call-center-operations.png" alt="Gabinet weterynaryjny z automatycznym systemem umówienia wizyt dla zwierząt" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">🐕</span>
                                 <span class="testimonial-text">Szybka pomoc dla pupili w każdej chwili.</span>
@@ -375,7 +432,7 @@
                     <!-- Logistics Content -->
                     <div class="business-display-content" id="content-logistics">
                         <div class="business-image">
-                            <img src="Public/technology-innovation.png" alt="Firma kurierska" class="business-placeholder">
+                            <img src="Public/technology-innovation.png" alt="Innowacyjna firma kurierska z automatycznym systemem odbierania zleceń" class="business-placeholder" loading="lazy">
                             <div class="testimonial-bubble">
                                 <span class="testimonial-emoji">📦</span>
                                 <span class="testimonial-text">Natychmiastowe umówienie kuriera.</span>
@@ -513,7 +570,7 @@
                 </div>
 
                 <!-- CTA do szczegółowego porównania -->
-                <div class="detailed-comparison-cta" style="display: none;">
+                <div class="detailed-comparison-cta hidden">
                     <div class="cta-content">
                         <h3>Chcesz poznać więcej szczegółów technicznych?</h3>
                         <p>Zobacz dokładne porównanie funkcjonalności i możliwości voice botów nowej generacji</p>
@@ -1384,7 +1441,7 @@
                     
                     <div class="table-row">
                         <div class="feature-name">
-                            <i class="fas fa-server"></i>
+                            <i class="fas fa-server" aria-hidden="true"></i>
                             <span>Hosting</span>
                         </div>
                         <div class="package-col basic">1 vCPU / 2 GB</div>
@@ -1395,7 +1452,7 @@
                     
                     <div class="table-row">
                         <div class="feature-name">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
                             <span>Dostępność</span>
                         </div>
                         <div class="package-col basic">99,0%</div>
@@ -1406,7 +1463,7 @@
                     
                     <div class="table-row">
                         <div class="feature-name">
-                            <i class="fas fa-headset"></i>
+                            <i class="fas fa-headset" aria-hidden="true"></i>
                             <span>Wsparcie</span>
                         </div>
                         <div class="package-col basic">9-17</div>
@@ -1417,13 +1474,60 @@
                     
                     <div class="table-row">
                         <div class="feature-name">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
                             <span>Monitoring</span>
                         </div>
                         <div class="package-col basic">Ping 5 min</div>
                         <div class="package-col standard">Proaktywny</div>
                         <div class="package-col premium">24/7 + SMS</div>
                         <div class="package-col enterprise">Syntetyczny</div>
+                    </div>
+                </div>
+                
+                <!-- Mobile-friendly pricing comparison -->
+                <div class="mobile-pricing-comparison" style="display: none;">
+                    <div class="mobile-package">
+                        <h4>SoundCare BASIC</h4>
+                        <div class="price">od 999 zł netto/miesiąc</div>
+                        <ul class="features">
+                            <li>1 vCPU / 2 GB RAM</li>
+                            <li>99,0% dostępność</li>
+                            <li>Wsparcie 9-17</li>
+                            <li>Monitoring basic</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mobile-package">
+                        <h4>SoundCare STANDARD</h4>
+                        <div class="price">od 3499 zł netto/miesiąc</div>
+                        <ul class="features">
+                            <li>2 vCPU / 4 GB RAM</li>
+                            <li>99,5% dostępność</li>
+                            <li>Wsparcie 8-18</li>
+                            <li>Monitoring proaktywny</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mobile-package">
+                        <h4>SoundCare PREMIUM</h4>
+                        <div class="price">od 9999 zł netto/miesiąc</div>
+                        <ul class="features">
+                            <li>Klaster HA</li>
+                            <li>99,8% dostępność</li>
+                            <li>Wsparcie 24/7</li>
+                            <li>Monitoring zaawansowany</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mobile-package">
+                        <h4>SoundCare ENTERPRISE</h4>
+                        <div class="price">od 14999 zł netto/miesiąc</div>
+                        <ul class="features">
+                            <li>HA x2 + geo-redundancja</li>
+                            <li>99,9% dostępność</li>
+                            <li>Wsparcie 24/7/365</li>
+                            <li>Dedykowany TAM</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1457,7 +1561,7 @@
                         </div>
                     </div>
                     
-                    <div class="cta-buttons" style="display: none;">
+                    <div class="cta-buttons hidden">
                         <a href="cennik.html" class="btn btn-primary btn-large btn-enhanced">
                             <i class="fas fa-list-ul"></i>
                             <span>Zobacz Pełny Cennik</span>
@@ -1565,6 +1669,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- FOOTER -->
     <footer id="contact" class="footer">
@@ -1572,7 +1677,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="images/soundcare.pro.png" alt="SoundCare Logo" class="footer-logo-img">
+                        <img src="images/soundcare.pro.png" alt="SoundCare - Inteligentny Asystent Głosowy - Logo firmy" class="footer-logo-img">
                         <span>SoundCare</span>
                     </div>
                     <p>Inteligentne rozwiązania głosowe dla nowoczesnych firm. Automatyzuj obsługę klienta i skup się na rozwoju biznesu.</p>
@@ -1633,7 +1738,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 <SoundCare class="Pro"></SoundCare> Wszystkie prawa zastrzeżone.</p>
+                <p>&copy; 2025 SoundCare Pro. Wszystkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>

@@ -1,0 +1,638 @@
+/* Mobile-first responsive improvements */
+
+/* Base mobile styles (320px and up) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    /* Enhanced navigation for mobile */
+    .nav-container {
+        padding: 0.75rem 1rem;
+    }
+    
+    .nav-logo {
+        font-size: 1.1rem;
+    }
+    
+    .nav-logo-img {
+        height: 32px;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        cursor: pointer;
+    }
+    
+    .hamburger .bar {
+        width: 100%;
+        height: 2px;
+        background: #333;
+        transition: all 0.3s ease;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* Hero section mobile optimization */
+    .hero {
+        padding: 100px 0 60px;
+        min-height: 100vh;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .hero-text {
+        text-align: center;
+        order: 2;
+    }
+    
+    .hero-visual {
+        order: 1;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .hero-features {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+    }
+    
+    .hero-stats {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 1rem;
+    }
+    
+    .stat {
+        text-align: center;
+        min-width: 80px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    /* Phone mockup optimization */
+    .phone-container {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .phone-mockup {
+        transform: scale(0.9);
+    }
+    
+    .call-interface {
+        padding: 1rem;
+    }
+    
+    .caller-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .conversation {
+        gap: 0.75rem;
+    }
+    
+    .message {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Business types section */
+    .business-types-menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .business-type-item {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .business-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .business-display-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .business-image {
+        margin-bottom: 1.5rem;
+    }
+    
+    .business-placeholder {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    /* Comparison section */
+    .simple-comparison {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .comparison-item {
+        padding: 1.5rem;
+    }
+    
+    .vs-indicator {
+        order: 2;
+        margin: 1rem 0;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .benefit-item {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    /* ROI section */
+    .savings-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .comparison-cards {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .cost-card {
+        padding: 1.5rem;
+    }
+    
+    .vs-divider {
+        order: 2;
+        margin: 1rem 0;
+    }
+    
+    .calculator-stats {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .calc-multiply,
+    .calc-equals {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+    
+    .scale-comparison {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .scale-vs {
+        order: 2;
+        margin: 1rem 0;
+    }
+    
+    .roi-results {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Features section */
+    .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+    
+    /* Pricing section */
+    .pricing-tiers-enhanced {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .tier-card {
+        padding: 1.5rem;
+    }
+    
+    .tier-price {
+        margin: 1rem 0;
+    }
+    
+    .price-amount {
+        font-size: 2rem;
+    }
+    
+    .features-table {
+        display: none; /* Hide complex table on mobile */
+    }
+    
+    /* Alternative mobile-friendly pricing comparison */
+    .mobile-pricing-comparison {
+        display: block;
+    }
+    
+    .mobile-package {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .mobile-package h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+    }
+    
+    .mobile-package .price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+    
+    .mobile-package .features {
+        list-style: none;
+    }
+    
+    .mobile-package .features li {
+        padding: 0.25rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-package .features li::before {
+        content: "✓ ";
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+    
+    /* FAQ section */
+    .faq-container {
+        gap: 1rem;
+    }
+    
+    .faq-item {
+        padding: 1.5rem;
+    }
+    
+    .faq-question h3 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+    
+    .faq-answer {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-section h4 {
+        margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .contact-info {
+        text-align: center;
+    }
+    
+    .contact-item {
+        justify-content: center;
+        margin-bottom: 0.75rem;
+    }
+}
+
+/* Tablet styles (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .business-types-menu {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .pricing-tiers-enhanced {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small desktop styles (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .business-types-menu {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .pricing-tiers-enhanced {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .overview-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+    
+    .nav-menu {
+        display: flex !important;
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        background: none;
+        box-shadow: none;
+        flex-direction: row;
+        padding: 0;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 1rem;
+        border: none;
+    }
+    
+    .mobile-pricing-comparison {
+        display: none;
+    }
+}
+
+/* Enhanced touch targets */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .nav-link,
+    .business-type-item,
+    .faq-question,
+    .action-btn {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 16px;
+    }
+    
+    .hamburger {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .btn:hover,
+    .nav-link:hover,
+    .business-type-item:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    /* Add active states for touch */
+    .btn:active {
+        transform: scale(0.98);
+    }
+    
+    .nav-link:active,
+    .business-type-item:active {
+        background-color: rgba(37, 99, 235, 0.1);
+    }
+}
+
+/* Prevent horizontal scroll on small screens */
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container {
+        overflow-x: hidden;
+    }
+    
+    /* Ensure all content fits within viewport */
+    .hero-content,
+    .business-types-content,
+    .comparison-content,
+    .features-content,
+    .pricing-content {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Fix any potential overflowing elements */
+    .phone-mockup,
+    .business-placeholder,
+    .comparison-item,
+    .cost-card,
+    .feature-card,
+    .tier-card {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    /* Responsive text sizing */
+    .section-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    /* Responsive spacing */
+    section {
+        padding: 3rem 0;
+    }
+    
+    .hero {
+        padding: 100px 0 50px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .nav-logo-img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .business-placeholder {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        padding: 80px 0 40px;
+        min-height: 100vh;
+    }
+    
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .hero-text {
+        flex: 1;
+        text-align: left;
+    }
+    
+    .hero-visual {
+        flex: 0 0 300px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: auto;
+        flex: 1;
+    }
+}
