@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="pricing-enhanced-styles.css">
     <link rel="stylesheet" href="accessibility-improvements.css">
     <link rel="stylesheet" href="mobile-responsive.css">
+    <link rel="stylesheet" href="modal-form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
@@ -82,7 +83,6 @@
                 <a href="#comparison" class="nav-link">Porównanie</a>
                 <a href="#features" class="nav-link">Funkcjonalności</a>
                 <a href="#pricing" class="nav-link">Cennik</a>
-                <a href="cennik.html" class="nav-link">Pełny Cennik</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#contact" class="nav-link">Kontakt</a>
             </div>
@@ -118,7 +118,7 @@
                     </div>
                     
                     <div class="hero-buttons">
-                        <button class="btn btn-primary btn-large" aria-label="Umów bezpłatne demo SoundCare">
+                        <button class="btn btn-primary btn-large" aria-label="Umów bezpłatne demo SoundCare" onclick="openDemoModal()">
                             <i class="fas fa-calendar-check" aria-hidden="true"></i>
                             <span>Umów Bezpłatne Demo</span>
                         </button>
@@ -1722,7 +1722,6 @@
                         <a href="#comparison">Porównanie</a>
                         <a href="#features">Funkcjonalności</a>
                         <a href="#pricing">Cennik</a>
-                        <a href="cennik.html">Pełny Cennik</a>
                         <a href="#faq">FAQ</a>
                         <a href="#roi">ROI</a>
                     </div>
@@ -1742,6 +1741,115 @@
             </div>
         </div>
     </footer>
+
+    <!-- Demo Booking Modal -->
+    <div id="demo-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Umów Bezpłatne Demo</h2>
+                <button class="modal-close" aria-label="Zamknij formularz">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Skorzystaj z bezpłatnego demo SoundCare i zobacz jak nasz inteligentny asystent może pomóc Twojej firmie.</p>
+                
+                <form id="demo-form" action="https://soundcare.sendy.co/subscribe" method="POST">
+                    <input type="hidden" name="list" value="YOUR_LIST_ID">
+                    <input type="hidden" name="subform" value="yes">
+                    
+                    <div class="form-group">
+                        <label for="name">Imię i nazwisko *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Nazwa firmy *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="industry">Branża</label>
+                        <select id="industry" name="industry">
+                            <option value="">Wybierz branżę</option>
+                            <option value="medical">Kliniki i przychodnie</option>
+                            <option value="hospitality">Hotele i restauracje</option>
+                            <option value="beauty">Salony kosmetyczne</option>
+                            <option value="automotive">Warsztaty samochodowe</option>
+                            <option value="legal">Firmy prawnicze</option>
+                            <option value="fitness">Centra fitness</option>
+                            <option value="veterinary">Gabinety weterynaryjne</option>
+                            <option value="logistics">Firmy kurierskie</option>
+                            <option value="other">Inna</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="employees">Liczba pracowników</label>
+                        <select id="employees" name="employees">
+                            <option value="">Wybierz zakres</option>
+                            <option value="1-5">1-5 pracowników</option>
+                            <option value="6-20">6-20 pracowników</option>
+                            <option value="21-50">21-50 pracowników</option>
+                            <option value="51-200">51-200 pracowników</option>
+                            <option value="200+">Powyżej 200 pracowników</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Dodatkowe informacje</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Opisz swoje potrzeby lub zadaj pytanie..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="demo-time">Preferowany termin demo</label>
+                        <select id="demo-time" name="demo-time">
+                            <option value="">Wybierz preferowany termin</option>
+                            <option value="morning">Rano (9:00 - 12:00)</option>
+                            <option value="afternoon">Popołudnie (12:00 - 17:00)</option>
+                            <option value="evening">Wieczór (17:00 - 20:00)</option>
+                            <option value="flexible">Elastyczny termin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="gdpr" name="gdpr" required>
+                            <span class="checkmark"></span>
+                            Zgadzam się na przetwarzanie moich danych osobowych zgodnie z 
+                            <a href="polityka-prywatnosci.html" target="_blank">Polityką Prywatności</a> *
+                        </label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="marketing" name="marketing">
+                            <span class="checkmark"></span>
+                            Chcę otrzymywać informacje o nowościach i promocjach SoundCare
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                            <span>Umów Demo</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">
+                            Anuluj
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

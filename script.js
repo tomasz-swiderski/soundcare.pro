@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollEffects();
     initAnimations();
     initBusinessTypes();
+    initDemoModal();
     
 });
 
@@ -734,6 +735,176 @@ function initBusinessTypes() {
             }
         });
     });
+}
+
+/* ===========================================
+   DEMO MODAL FUNCTIONALITY
+   =========================================== */
+function initDemoModal() {
+    const modal = document.getElementById('demo-modal');
+    const closeBtn = document.querySelector('.modal-close');
+    const form = document.getElementById('demo-form');
+    
+    // Close modal when clicking close button
+    closeBtn.addEventListener('click', function() {
+        closeDemoModal();
+    });
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeDemoModal();
+        }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display !== 'none') {
+            closeDemoModal();
+        }
+    });
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validate form
+        if (!validateForm()) {
+            return;
+        }
+        
+        // Show loading state
+        form.classList.add('form-loading');
+        
+        // Create FormData object
+        const formData = new FormData(form);
+        
+        // Submit to Sendy
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Handle success
+            showMessage('Dziękujemy! Skontaktujemy się z Tobą w ciągu 24 godzin.', 'success');
+            form.reset();
+            
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                closeDemoModal();
+            }, 3000);
+        })
+        .catch(error => {
+            // Handle error
+            showMessage('Przepraszamy, wystąpił błąd. Spróbuj ponownie lub skontaktuj się z nami bezpośrednio.', 'error');
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            // Remove loading state
+            form.classList.remove('form-loading');
+        });
+    });
+}
+
+function openDemoModal() {
+    const modal = document.getElementById('demo-modal');
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+    
+    // Focus on first input
+    setTimeout(() => {
+        document.getElementById('name').focus();
+    }, 100);
+}
+
+function closeDemoModal() {
+    const modal = document.getElementById('demo-modal');
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    
+    // Clear any messages
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+}
+
+// Make functions globally available
+window.openDemoModal = openDemoModal;
+window.closeModal = closeDemoModal;
+
+function validateForm() {
+    const required = ['name', 'email', 'phone', 'company'];
+    let isValid = true;
+    
+    // Check required fields
+    required.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (!field.value.trim()) {
+            field.style.borderColor = '#ef4444';
+            isValid = false;
+        } else {
+            field.style.borderColor = '#e5e7eb';
+        }
+    });
+    
+    // Check email format
+    const email = document.getElementById('email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email.value && !emailRegex.test(email.value)) {
+        email.style.borderColor = '#ef4444';
+        isValid = false;
+    }
+    
+    // Check phone format (basic)
+    const phone = document.getElementById('phone');
+    const phoneRegex = /^[+]?[\d\s\-\(\)]+$/;
+    if (phone.value && !phoneRegex.test(phone.value)) {
+        phone.style.borderColor = '#ef4444';
+        isValid = false;
+    }
+    
+    // Check GDPR checkbox
+    const gdpr = document.getElementById('gdpr');
+    if (!gdpr.checked) {
+        gdpr.parentElement.style.color = '#ef4444';
+        isValid = false;
+    } else {
+        gdpr.parentElement.style.color = '';
+    }
+    
+    if (!isValid) {
+        showMessage('Proszę wypełnić wszystkie wymagane pola poprawnie.', 'error');
+    }
+    
+    return isValid;
+}
+
+function showMessage(text, type) {
+    // Remove existing message
+    const existingMessage = document.querySelector('.form-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Create new message
+    const message = document.createElement('div');
+    message.className = `form-message ${type}`;
+    message.textContent = text;
+    
+    // Insert at the top of modal body
+    const modalBody = document.querySelector('.modal-body');
+    modalBody.insertBefore(message, modalBody.firstChild);
+    
+    // Auto-remove error messages after 5 seconds
+    if (type === 'error') {
+        setTimeout(() => {
+            if (message.parentNode) {
+                message.remove();
+            }
+        }, 5000);
+    }
 }
 
 console.log('🎤 VoiceFlow AI - Landing Page Loaded Successfully!'); 
