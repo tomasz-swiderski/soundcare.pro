@@ -1,0 +1,320 @@
+/* ==========================================
+   MOBILE BUSINESS TYPES SECTION FIX
+   NO BLUE BACKGROUND - ONLY BORDER INDICATION
+   ========================================== */
+
+/* Remove all hover effects and blue backgrounds on mobile */
+@media (max-width: 768px) {
+    
+    /* Remove all hover effects on mobile */
+    .business-type-item:hover {
+        background: white !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+        transform: none !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    /* Better mobile layout for business types menu */
+    .business-types-menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    /* Enhanced mobile styles for business-type-item */
+    .business-type-item {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: white;
+        text-align: center;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Mobile icon styling */
+    .business-type-item .business-icon {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+        background: rgba(37, 99, 235, 0.1);
+        color: #2563eb;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    /* Mobile text styling */
+    .business-type-item span {
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #374151;
+        line-height: 1.2;
+        text-align: center;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* ACTIVE STATE - NO BLUE BACKGROUND, ONLY BORDER */
+    .business-type-item.active {
+        border: 2px solid #2563eb !important;
+        background: white !important;
+        color: #374151 !important;
+        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1) !important;
+    }
+    
+    .business-type-item.active .business-icon {
+        background: rgba(37, 99, 235, 0.15) !important;
+        color: #2563eb !important;
+        border: 2px solid #2563eb !important;
+    }
+    
+    .business-type-item.active span {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* Touch feedback - subtle scale effect */
+    .business-type-item:active {
+        transform: scale(0.98);
+        background: rgba(37, 99, 235, 0.05) !important;
+        border-color: #2563eb !important;
+    }
+    
+    /* Remove all hover effects */
+    .business-type-item:hover {
+        background: white !important;
+        color: #374151 !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+        transform: none !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .business-type-item:hover .business-icon {
+        background: rgba(37, 99, 235, 0.1) !important;
+        color: #2563eb !important;
+    }
+    
+    .business-type-item:hover span {
+        color: #374151 !important;
+    }
+    
+    /* Force consistent styling regardless of browser */
+    .business-type-item {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    /* Ensure text is always visible */
+    .business-type-item span {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* Ensure icon is always visible */
+    .business-type-item .business-icon {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    /* Ensure containers don't overflow */
+    .business-types-content {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .business-types-menu {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .business-type-item {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .business-types-menu {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.4rem;
+        padding: 0 0.25rem;
+    }
+    
+    .business-type-item {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+        min-height: 75px;
+    }
+    
+    .business-type-item .business-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .business-type-item span {
+        font-size: 0.8rem;
+        line-height: 1.1;
+    }
+    
+    /* Active state for extra small screens - NO BLUE BACKGROUND */
+    .business-type-item.active {
+        border: 2px solid #2563eb !important;
+        background: white !important;
+        color: #374151 !important;
+    }
+    
+    .business-type-item.active span {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .business-type-item.active .business-icon {
+        background: rgba(37, 99, 235, 0.15) !important;
+        color: #2563eb !important;
+        border: 2px solid #2563eb !important;
+    }
+}
+
+/* Touch devices - disable hover completely */
+@media (hover: none) and (pointer: coarse) {
+    .business-type-item:hover {
+        background: white !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+        transform: none !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .business-type-item:not(.active):hover {
+        background: white !important;
+        color: #374151 !important;
+    }
+    
+    .business-type-item:not(.active):hover .business-icon {
+        background: rgba(37, 99, 235, 0.1) !important;
+        color: #2563eb !important;
+    }
+    
+    .business-type-item:not(.active):hover span {
+        color: #374151 !important;
+    }
+    
+    /* Force NON-BLUE active state on touch devices */
+    .business-type-item.active {
+        border: 2px solid #2563eb !important;
+        background: white !important;
+        color: #374151 !important;
+    }
+    
+    .business-type-item.active span {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .business-type-item.active .business-icon {
+        background: rgba(37, 99, 235, 0.15) !important;
+        color: #2563eb !important;
+        border: 2px solid #2563eb !important;
+    }
+}
+
+/* Override ALL possible active state blue background rules */
+@media (max-width: 768px) {
+    /* All possible selectors for active state */
+    .business-type-item.active,
+    .business-type-item.active:hover,
+    .business-type-item.active:focus,
+    .business-type-item.active:active,
+    .business-type-item.active:visited,
+    .business-type-item[data-business].active,
+    .business-type-item.js-active,
+    .business-type-item.active.js-active,
+    .business-types-menu .business-type-item.active,
+    .business-types-content .business-type-item.active,
+    .business-types .business-type-item.active,
+    .business-types .business-types-content .business-types-menu .business-type-item.active {
+        border: 2px solid #2563eb !important;
+        background: white !important;
+        color: #374151 !important;
+        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1) !important;
+    }
+    
+    /* All possible selectors for active state spans */
+    .business-type-item.active span,
+    .business-type-item.active:hover span,
+    .business-type-item.active:focus span,
+    .business-type-item.active:active span,
+    .business-type-item.active:visited span,
+    .business-type-item[data-business].active span,
+    .business-type-item.js-active span,
+    .business-type-item.active.js-active span,
+    .business-types-menu .business-type-item.active span,
+    .business-types-content .business-type-item.active span,
+    .business-types .business-type-item.active span,
+    .business-types .business-types-content .business-types-menu .business-type-item.active span {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        text-shadow: none !important;
+        text-indent: 0 !important;
+        font-size: 0.85rem !important;
+        line-height: 1.2 !important;
+        text-decoration: none !important;
+        text-transform: none !important;
+    }
+    
+    /* All possible selectors for active state icons */
+    .business-type-item.active .business-icon,
+    .business-type-item.active:hover .business-icon,
+    .business-type-item.active:focus .business-icon,
+    .business-type-item.active:active .business-icon,
+    .business-type-item.active:visited .business-icon,
+    .business-type-item[data-business].active .business-icon,
+    .business-type-item.js-active .business-icon,
+    .business-type-item.active.js-active .business-icon,
+    .business-types-menu .business-type-item.active .business-icon,
+    .business-types-content .business-type-item.active .business-icon,
+    .business-types .business-type-item.active .business-icon,
+    .business-types .business-types-content .business-types-menu .business-type-item.active .business-icon {
+        color: #2563eb !important;
+        background: rgba(37, 99, 235, 0.15) !important;
+        border: 2px solid #2563eb !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+} 

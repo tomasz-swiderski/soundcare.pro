@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnimations();
     initBusinessTypes();
     initDemoModal();
+    initNavigationAnimations();
     
 });
 
@@ -74,17 +75,21 @@ function initNavigation() {
         }
     });
     
-    // Navbar scroll effect
+    // Old navbar scroll effect - now handled in initScrollEffects
+    /*
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
         } else {
+            navbar.classList.remove('scrolled');
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
+            navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
         }
     });
+    */
 }
 
 /* ===========================================
@@ -95,7 +100,6 @@ function initFAQ() {
     
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
         
         question.addEventListener('click', function() {
             const isActive = item.classList.contains('active');
@@ -103,18 +107,20 @@ function initFAQ() {
             // Close all FAQ items
             faqItems.forEach(faqItem => {
                 faqItem.classList.remove('active');
-                const faqAnswer = faqItem.querySelector('.faq-answer');
-                faqAnswer.style.maxHeight = '0';
             });
             
             // Open clicked item if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
             }
         });
     });
 }
+
+// Initialize FAQ on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initFAQ();
+});
 
 /* ===========================================
    SMOOTH SCROLL FUNCTIONALITY
@@ -145,7 +151,7 @@ function initSmoothScroll() {
    SCROLL EFFECTS AND ANIMATIONS
    =========================================== */
 function initScrollEffects() {
-    // Active navigation link highlighting
+    // Active navigation link highlighting with enhanced styling
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -167,6 +173,23 @@ function initScrollEffects() {
             }
         });
     });
+
+    // Enhanced navbar scroll effect with performance optimization
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        
+        scrollTimeout = setTimeout(() => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }, 10);
+    }, { passive: true });
 }
 
 /* ===========================================
@@ -702,10 +725,68 @@ function initBusinessTypes() {
             // Remove active class from all menu items
             businessTypeItems.forEach(menuItem => {
                 menuItem.classList.remove('active');
+                
+                // Reset inline styles completely
+                if (window.innerWidth <= 768) {
+                    menuItem.style.cssText = '';
+                    
+                    // Reset span styles
+                    const span = menuItem.querySelector('span');
+                    if (span) {
+                        span.style.cssText = '';
+                    }
+                    
+                    // Reset icon styles
+                    const icon = menuItem.querySelector('.business-icon');
+                    if (icon) {
+                        icon.style.cssText = '';
+                    }
+                }
             });
             
             // Add active class to clicked item
             this.classList.add('active');
+            
+            // Apply subtle border-only styles on mobile (no blue background)
+            if (window.innerWidth <= 768) {
+                // NO BLUE BACKGROUND - Only border indication
+                this.style.border = '2px solid #2563eb';
+                this.style.backgroundColor = 'white';
+                this.style.color = '#374151';
+                this.style.boxShadow = '0 4px 8px rgba(37, 99, 235, 0.1)';
+                
+                // Force span visibility with normal text color
+                const span = this.querySelector('span');
+                if (span) {
+                    span.style.color = '#374151';
+                    span.style.opacity = '1';
+                    span.style.visibility = 'visible';
+                    span.style.display = 'block';
+                    span.style.fontWeight = '600';
+                    span.style.textShadow = 'none';
+                    span.style.textIndent = '0';
+                    span.style.fontSize = '0.85rem';
+                    span.style.lineHeight = '1.2';
+                    span.style.textDecoration = 'none';
+                    span.style.textTransform = 'none';
+                }
+                
+                // Force icon visibility with blue accent
+                const icon = this.querySelector('.business-icon');
+                if (icon) {
+                    icon.style.color = '#2563eb';
+                    icon.style.backgroundColor = 'rgba(37, 99, 235, 0.15)';
+                    icon.style.border = '2px solid #2563eb';
+                    icon.style.opacity = '1';
+                    icon.style.visibility = 'visible';
+                    icon.style.display = 'flex';
+                    icon.style.alignItems = 'center';
+                    icon.style.justifyContent = 'center';
+                }
+                
+                // Add extra class for CSS targeting
+                this.classList.add('js-active');
+            }
             
             // Hide all content sections
             businessDisplayContents.forEach(content => {
@@ -720,21 +801,116 @@ function initBusinessTypes() {
                     targetContent.classList.add('active');
                 }, 100);
             }
-        });
-        
-        // Add hover effect for better UX
-        item.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('active')) {
-                this.style.transform = 'translateY(-2px)';
+            
+            // Enhanced debug logging for mobile
+            if (window.innerWidth <= 768) {
+                console.log('Mobile: Active business type selected:', businessType);
+                console.log('Element classes:', this.className);
+                console.log('Element background:', this.style.backgroundColor);
+                console.log('Element color:', this.style.color);
+                console.log('Element border:', this.style.border);
+                
+                const span = this.querySelector('span');
+                const icon = this.querySelector('.business-icon');
+                
+                if (span) {
+                    console.log('Span color:', span.style.color);
+                    console.log('Span opacity:', span.style.opacity);
+                    console.log('Span visibility:', span.style.visibility);
+                    console.log('Span display:', span.style.display);
+                    console.log('Span computed color:', getComputedStyle(span).color);
+                }
+                
+                if (icon) {
+                    console.log('Icon color:', icon.style.color);
+                    console.log('Icon background:', icon.style.backgroundColor);
+                    console.log('Icon border:', icon.style.border);
+                    console.log('Icon computed color:', getComputedStyle(icon).color);
+                }
+                
+                // Double-check visibility after a short delay
+                setTimeout(() => {
+                    if (span) {
+                        const spanStyles = getComputedStyle(span);
+                        console.log('Span final computed color:', spanStyles.color);
+                        console.log('Span final computed opacity:', spanStyles.opacity);
+                        console.log('Span final computed visibility:', spanStyles.visibility);
+                        
+                        // Emergency fix if text is still not visible
+                        if (spanStyles.color === 'rgba(0, 0, 0, 0)' || spanStyles.color === 'transparent' || spanStyles.opacity === '0') {
+                            console.log('Emergency: Forcing span visibility!');
+                            span.style.setProperty('color', '#374151', 'important');
+                            span.style.setProperty('opacity', '1', 'important');
+                            span.style.setProperty('visibility', 'visible', 'important');
+                            span.style.setProperty('display', 'block', 'important');
+                        }
+                    }
+                }, 100);
             }
         });
         
-        item.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('active')) {
-                this.style.transform = '';
-            }
-        });
+        // Enhanced hover effects for desktop only
+        if (window.innerWidth > 768) {
+            item.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.15)';
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                }
+            });
+        }
+        
+        // Add touch feedback for mobile
+        if (window.innerWidth <= 768) {
+            item.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            item.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = '';
+                    }
+                }, 100);
+            });
+        }
     });
+    
+    // Ensure first item is properly activated on page load
+    const firstItem = businessTypeItems[0];
+    if (firstItem && window.innerWidth <= 768) {
+        // Apply active styles to first item - NO BLUE BACKGROUND
+        firstItem.classList.add('active');
+        firstItem.style.border = '2px solid #2563eb';
+        firstItem.style.backgroundColor = 'white';
+        firstItem.style.color = '#374151';
+        firstItem.style.boxShadow = '0 4px 8px rgba(37, 99, 235, 0.1)';
+        
+        const span = firstItem.querySelector('span');
+        if (span) {
+            span.style.color = '#374151';
+            span.style.opacity = '1';
+            span.style.visibility = 'visible';
+            span.style.display = 'block';
+            span.style.fontWeight = '600';
+        }
+        
+        const icon = firstItem.querySelector('.business-icon');
+        if (icon) {
+            icon.style.color = '#2563eb';
+            icon.style.backgroundColor = 'rgba(37, 99, 235, 0.15)';
+            icon.style.border = '2px solid #2563eb';
+            icon.style.opacity = '1';
+            icon.style.visibility = 'visible';
+            icon.style.display = 'flex';
+        }
+    }
 }
 
 /* ===========================================
@@ -928,3 +1104,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 }); 
+
+/* ===========================================
+   ENHANCED NAVIGATION ANIMATIONS
+   =========================================== */
+function initNavigationAnimations() {
+    // Add staggered animation to navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link, index) => {
+        link.style.animationDelay = `${index * 0.1}s`;
+    });
+    
+    // Animate navigation on page load
+    const navbar = document.querySelector('.navbar');
+    navbar.style.opacity = '0';
+    navbar.style.transform = 'translateY(-100%)';
+    
+    setTimeout(() => {
+        navbar.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        navbar.style.opacity = '1';
+        navbar.style.transform = 'translateY(0)';
+    }, 100);
+    
+    // Enhanced smooth scroll for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Add hover sound effect (optional)
+    if (window.matchMedia('(min-width: 769px)').matches) {
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                // Add subtle hover feedback
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = '';
+                }
+            });
+        });
+    }
+    
+    // Add breadcrumb indicator
+    initBreadcrumbIndicator();
+}
+
+/* ===========================================
+   BREADCRUMB INDICATOR
+   =========================================== */
+function initBreadcrumbIndicator() {
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Create breadcrumb indicator
+    const breadcrumb = document.createElement('div');
+    breadcrumb.className = 'nav-breadcrumb';
+    navbar.appendChild(breadcrumb);
+    
+    // Update breadcrumb position
+    function updateBreadcrumb() {
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            const rect = activeLink.getBoundingClientRect();
+            const navRect = navbar.getBoundingClientRect();
+            
+            breadcrumb.style.left = `${rect.left - navRect.left}px`;
+            breadcrumb.style.width = `${rect.width}px`;
+            breadcrumb.style.opacity = '1';
+        } else {
+            breadcrumb.style.opacity = '0';
+        }
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateBreadcrumb);
+    
+    // Update on resize
+    window.addEventListener('resize', updateBreadcrumb);
+    
+    // Initial update
+    setTimeout(updateBreadcrumb, 100);
+} 

@@ -195,11 +195,57 @@
     .business-type-item {
         padding: 1rem;
         font-size: 0.9rem;
+        background: white !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        color: #374151 !important;
+    }
+    
+    .business-type-item:hover {
+        background: white !important;
+        color: #374151 !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .business-type-item span {
+        color: #374151 !important;
+    }
+    
+    .business-type-item:hover span {
+        color: #374151 !important;
     }
     
     .business-icon {
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
+        background: rgba(37, 99, 235, 0.1) !important;
+        color: #2563eb !important;
+    }
+    
+    .business-type-item:hover .business-icon {
+        background: rgba(37, 99, 235, 0.1) !important;
+        color: #2563eb !important;
+    }
+    
+    /* ACTIVE STATE - NO BLUE BACKGROUND */
+    .business-type-item.active {
+        border: 2px solid #2563eb !important;
+        background: white !important;
+        color: #374151 !important;
+        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1) !important;
+    }
+    
+    .business-type-item.active span {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .business-type-item.active .business-icon {
+        background: rgba(37, 99, 235, 0.15) !important;
+        color: #2563eb !important;
+        border: 2px solid #2563eb !important;
     }
     
     .business-display-content {
@@ -373,17 +419,71 @@
     }
     
     .faq-item {
-        padding: 1.5rem;
+        background: white;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+    
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem;
+        cursor: pointer;
+        width: 100%;
+        background: none;
+        border: none;
     }
     
     .faq-question h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
         line-height: 1.4;
+        margin: 0;
+        flex: 1;
+        padding-right: 1rem;
+        color: var(--text-primary);
+    }
+    
+    .faq-toggle {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .faq-toggle i {
+        color: white;
+        font-size: 14px;
+        transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-toggle i {
+        transform: rotate(45deg);
     }
     
     .faq-answer {
+        display: none;
+        padding: 0 1.25rem 1.25rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .faq-answer p {
         font-size: 0.95rem;
         line-height: 1.6;
+        color: var(--text-secondary);
+        margin: 0;
+        padding-top: 1.25rem;
+    }
+    
+    .faq-item.active .faq-answer {
+        display: block;
     }
     
     /* Footer */
@@ -529,8 +629,48 @@
     .btn:hover,
     .nav-link:hover,
     .business-type-item:hover {
-        transform: none;
-        box-shadow: none;
+        transform: none !important;
+        box-shadow: none !important;
+        background: white !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Override business-type-item hover specifically */
+    .business-type-item:not(.active):hover {
+        background: white !important;
+        color: #374151 !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .business-type-item:not(.active):hover .business-icon {
+        background: rgba(37, 99, 235, 0.1) !important;
+        color: #2563eb !important;
+    }
+    
+    .business-type-item:not(.active):hover span {
+        color: #374151 !important;
+    }
+    
+    /* Ensure active state remains visible on touch */
+    .business-type-item.active {
+        border: 2px solid #2563eb !important;
+        background: white !important;
+        color: #374151 !important;
+        box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1) !important;
+    }
+    
+    .business-type-item.active span {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    .business-type-item.active .business-icon {
+        background: rgba(37, 99, 235, 0.15) !important;
+        color: #2563eb !important;
+        border: 2px solid #2563eb !important;
     }
     
     /* Add active states for touch */
@@ -540,7 +680,8 @@
     
     .nav-link:active,
     .business-type-item:active {
-        background-color: rgba(37, 99, 235, 0.1);
+        background-color: rgba(37, 99, 235, 0.1) !important;
+        transform: scale(0.98) !important;
     }
 }
 
@@ -564,15 +705,35 @@
         overflow-x: hidden;
     }
     
+    /* Specific business-types container fixes */
+    .business-types {
+        overflow-x: hidden;
+    }
+    
+    .business-types-content {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .business-types-menu {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    
     /* Fix any potential overflowing elements */
     .phone-mockup,
     .business-placeholder,
     .comparison-item,
     .cost-card,
     .feature-card,
-    .tier-card {
+    .tier-card,
+    .business-type-item {
         max-width: 100%;
         width: 100%;
+        box-sizing: border-box;
     }
     
     /* Responsive text sizing */

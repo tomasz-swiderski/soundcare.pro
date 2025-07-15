@@ -63,12 +63,175 @@
     <link rel="stylesheet" href="mobile-responsive.css">
     <link rel="stylesheet" href="modal-form.css">
     <link rel="stylesheet" href="cookie-banner.css">
+    <link rel="stylesheet" href="desktop-navigation.css">
+    <link rel="stylesheet" href="mobile-business-types-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="mobile-business-types-fix.css">
+    
+    <!-- Temporary inline styles to force mobile business types fix -->
+    <style>
+        @media (max-width: 768px) {
+            /* Force white background and dark text for active state */
+            .business-type-item.active,
+            .business-type-item.active:hover,
+            .business-type-item.active:focus,
+            .business-type-item.active:active,
+            .business-type-item.active:visited,
+            .business-types-menu .business-type-item.active,
+            .business-types-content .business-type-item.active,
+            .business-types .business-type-item.active {
+                border: 2px solid #2563eb !important;
+                background: white !important;
+                color: #374151 !important;
+                box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1) !important;
+            }
+            
+            /* Force dark text for span elements */
+            .business-type-item.active span,
+            .business-type-item.active:hover span,
+            .business-type-item.active:focus span,
+            .business-type-item.active:active span,
+            .business-type-item.active:visited span,
+            .business-types-menu .business-type-item.active span,
+            .business-types-content .business-type-item.active span,
+            .business-types .business-type-item.active span {
+                color: #374151 !important;
+                font-weight: 600 !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: block !important;
+            }
+            
+            /* Force blue icon with white background */
+            .business-type-item.active .business-icon,
+            .business-type-item.active:hover .business-icon,
+            .business-type-item.active:focus .business-icon,
+            .business-type-item.active:active .business-icon,
+            .business-type-item.active:visited .business-icon,
+            .business-types-menu .business-type-item.active .business-icon,
+            .business-types-content .business-type-item.active .business-icon,
+            .business-types .business-type-item.active .business-icon {
+                color: #2563eb !important;
+                background: rgba(37, 99, 235, 0.15) !important;
+                border: 2px solid #2563eb !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: flex !important;
+            }
+            
+            /* Ensure normal state for inactive items */
+            .business-type-item {
+                background: white !important;
+                color: #374151 !important;
+                border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            .business-type-item:hover {
+                background: white !important;
+                color: #374151 !important;
+                border-color: rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            .business-type-item span {
+                color: #374151 !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: block !important;
+            }
+            
+            .business-type-item .business-icon {
+                color: #2563eb !important;
+                background: rgba(37, 99, 235, 0.1) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: flex !important;
+            }
+        }
+
+        .faq-toggle::before,
+        .faq-toggle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+        }
+
+        .faq-item.expanded .faq-toggle::after {
+            display: none;
+        }
+
+        .faq-answer {
+            display: none;
+        }
+
+        .faq-item.expanded .faq-answer {
+            display: block;
+        }
+    </style>
+    
+    <!-- Force mobile business types fix on page load -->
+    <script>
+        // Force mobile business types fix immediately on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 768) {
+                const businessTypeItems = document.querySelectorAll('.business-type-item');
+                
+                businessTypeItems.forEach(item => {
+                    // Apply white background and dark text for all items
+                    item.style.setProperty('background', 'white', 'important');
+                    item.style.setProperty('color', '#374151', 'important');
+                    item.style.setProperty('border', '1px solid rgba(0, 0, 0, 0.1)', 'important');
+                    
+                    // Style spans
+                    const span = item.querySelector('span');
+                    if (span) {
+                        span.style.setProperty('color', '#374151', 'important');
+                        span.style.setProperty('opacity', '1', 'important');
+                        span.style.setProperty('visibility', 'visible', 'important');
+                        span.style.setProperty('display', 'block', 'important');
+                    }
+                    
+                    // Style icons
+                    const icon = item.querySelector('.business-icon');
+                    if (icon) {
+                        icon.style.setProperty('color', '#2563eb', 'important');
+                        icon.style.setProperty('background', 'rgba(37, 99, 235, 0.1)', 'important');
+                        icon.style.setProperty('opacity', '1', 'important');
+                        icon.style.setProperty('visibility', 'visible', 'important');
+                        icon.style.setProperty('display', 'flex', 'important');
+                    }
+                    
+                    // Special styling for active items
+                    if (item.classList.contains('active')) {
+                        item.style.setProperty('border', '2px solid #2563eb', 'important');
+                        item.style.setProperty('background', 'white', 'important');
+                        item.style.setProperty('color', '#374151', 'important');
+                        item.style.setProperty('box-shadow', '0 4px 8px rgba(37, 99, 235, 0.1)', 'important');
+                        
+                        if (span) {
+                            span.style.setProperty('color', '#374151', 'important');
+                            span.style.setProperty('font-weight', '600', 'important');
+                        }
+                        
+                        if (icon) {
+                            icon.style.setProperty('color', '#2563eb', 'important');
+                            icon.style.setProperty('background', 'rgba(37, 99, 235, 0.15)', 'important');
+                            icon.style.setProperty('border', '2px solid #2563eb', 'important');
+                        }
+                    }
+                });
+                
+                console.log('Mobile business types fix applied on page load');
+            }
+        });
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
@@ -88,6 +251,10 @@
                 <a href="#clients" class="nav-link">Nasi klienci</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#contact" class="nav-link">Kontakt</a>
+                <button class="nav-cta" onclick="openDemoModal()" aria-label="Umów bezpłatne demo">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Umów Demo</span>
+                </button>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Otwórz menu nawigacyjne" aria-expanded="false" aria-controls="nav-menu">
                 <span class="bar"></span>
@@ -583,18 +750,6 @@
                             <h4>Skalowalne rozwiązanie</h4>
                             <p>Rośnie razem z Twoją firmą bez dodatkowych kosztów</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- CTA do szczegółowego porównania -->
-                <div class="detailed-comparison-cta hidden">
-                    <div class="cta-content">
-                        <h3>Chcesz poznać więcej szczegółów technicznych?</h3>
-                        <p>Zobacz dokładne porównanie funkcjonalności i możliwości voice botów nowej generacji</p>
-                        <a href="index copy.html#comparison" class="btn btn-primary btn-large">
-                            <i class="fas fa-microscope"></i>
-                            <span>Zobacz Szczegółowe Porównanie</span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -1683,9 +1838,7 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Jak szybko można wdrożyć SoundCare w mojej firmie?</h3>
-                        <span class="faq-toggle">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                        <div class="faq-toggle"></div>
                     </div>
                     <div class="faq-answer">
                         <p>Standardowe wdrożenie trwa od 3 do 14 dni roboczych, w zależności od złożoności integracji. Proces obejmuje analizę potrzeb, konfigurację systemu, testy oraz szkolenie zespołu. W przypadkach pilnych możemy skrócić ten czas do 24-48 godzin.</p>
@@ -1695,9 +1848,7 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Czy SoundCare może zastąpić moją obecną recepcjonistkę?</h3>
-                        <span class="faq-toggle">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                        <div class="faq-toggle"></div>
                     </div>
                     <div class="faq-answer">
                         <p>SoundCare jest zaprojektowany jako wsparcie, nie zastępstwo dla Twojego zespołu. Asystent obsługuje rutynowe zadania 24/7, pozwalając pracownikom skupić się na bardziej wartościowych czynnościach. W sytuacjach wymagających ludzkiej interwencji, rozmowa zostanie automatycznie przekierowana.</p>
@@ -1707,9 +1858,7 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Czy system integruje się z moim obecnym oprogramowaniem?</h3>
-                        <span class="faq-toggle">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                        <div class="faq-toggle"></div>
                     </div>
                     <div class="faq-answer">
                         <p>Tak, SoundCare integruje się z popularnymi systemami rezerwacji, kalendarzami (Google Calendar, Outlook) oraz oprogramowaniem medycznym. Oferujemy także niestandardowe integracje poprzez API. Podczas wdrożenia sprawdzimy kompatybilność z Twoimi obecnymi narzędziami.</p>
@@ -1719,9 +1868,7 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Jak bezpieczne są dane moich pacjentów/klientów?</h3>
-                        <span class="faq-toggle">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                        <div class="faq-toggle"></div>
                     </div>
                     <div class="faq-answer">
                         <p>Bezpieczeństwo danych to nasz priorytet. SoundCare jest zgodny z RODO i wykorzystuje szyfrowanie end-to-end. Wszystkie dane są przechowywane na serwerach w UE, z regularnymi audytami bezpieczeństwa. Dla placówek medycznych zapewniamy dodatkowe zabezpieczenia zgodne z wymogami branży medycznej.</p>
@@ -1731,9 +1878,7 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Co jeśli asystent nie zrozumie pytania klienta?</h3>
-                        <span class="faq-toggle">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                        <div class="faq-toggle"></div>
                     </div>
                     <div class="faq-answer">
                         <p>System posiada zaawansowane mechanizmy obsługi nietypowych sytuacji. Jeśli asystent nie może odpowiedzieć na pytanie, grzecznie przekieruje rozmowę do odpowiedniej osoby lub zapisze wiadomość do oddzwonienia. Dodatkowo system ciągle się uczy na podstawie nowych interakcji.</p>
@@ -1743,9 +1888,7 @@
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Czy mogę anulować usługę w każdym momencie?</h3>
-                        <span class="faq-toggle">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                        <div class="faq-toggle"></div>
                     </div>
                     <div class="faq-answer">
                         <p>Tak, oferujemy elastyczne warunki współpracy. Możesz anulować usługę z miesięcznym wypowiedzeniem. Nie wymaga to dodatkowych opłat ani długoterminowych zobowiązań. Chcemy, żebyś był zadowolony z naszej usługi, a nie zmuszany do korystania z niej.</p>

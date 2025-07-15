@@ -2383,7 +2383,7 @@ a.btn-primary:hover {
 }
 
 /* Enhanced benefit item styling */
-.benefit-item {
+    .benefit-item {
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
@@ -2422,4 +2422,4 @@ a.btn-primary:hover {
 .benefit-item:nth-child(6):hover {
     border-color: #8b5cf6;
     box-shadow: 0 12px 32px rgba(139, 92, 246, 0.2);
-}
+} 
