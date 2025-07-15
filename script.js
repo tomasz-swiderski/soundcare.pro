@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnimations();
     initBusinessTypes();
     initDemoModal();
+    initMobileLazyLoading(); // Initialize mobile lazy loading
+    initMobileOptimizations(); // Initialize mobile optimizations
+    initTouchOptimizations(); // Initialize touch optimizations
     
 });
 
@@ -33,17 +36,41 @@ function initNavigation() {
         const isActive = hamburger.classList.contains('active');
         hamburger.setAttribute('aria-expanded', isActive);
         navMenu.setAttribute('aria-hidden', !isActive);
+        
+        // Prevent body scroll when menu is open
+        if (window.innerWidth <= 768) {
+            initMobileLazyLoading();
+        }
     });
     
     // Close mobile menu when clicking on nav links
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function(e) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('nav-open');
             
             // Update ARIA attributes
             hamburger.setAttribute('aria-expanded', false);
             navMenu.setAttribute('aria-hidden', true);
+            
+            // Smooth scrolling to section
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
         });
     });
     
@@ -52,6 +79,7 @@ function initNavigation() {
         if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('nav-open');
             
             // Update ARIA attributes
             hamburger.setAttribute('aria-expanded', false);
@@ -64,6 +92,7 @@ function initNavigation() {
         if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('nav-open');
             
             // Update ARIA attributes
             hamburger.setAttribute('aria-expanded', false);
@@ -73,6 +102,66 @@ function initNavigation() {
             hamburger.focus();
         }
     });
+    
+    // Close mobile menu on orientation change
+    window.addEventListener('orientationchange', function() {
+        if (navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('nav-open');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', false);
+            navMenu.setAttribute('aria-hidden', true);
+        }
+    });
+    
+    // Close mobile menu on window resize (desktop/mobile switch)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('nav-open');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', false);
+            navMenu.setAttribute('aria-hidden', true);
+        }
+    });
+    
+    // Touch gesture support for mobile menu
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    navMenu.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    navMenu.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipeGesture();
+    });
+    
+    function handleSwipeGesture() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+        
+        // Close menu on swipe left
+        if (swipeDistance < -swipeThreshold && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('nav-open');
+            
+            // Update ARIA attributes
+            hamburger.setAttribute('aria-expanded', false);
+            navMenu.setAttribute('aria-hidden', true);
+        }
+    }
+    
+    // Initialize mobile lazy loading if on mobile device
+    if (window.innerWidth <= 768) {
+        initMobileLazyLoading();
+    }
     
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
@@ -594,96 +683,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.insertBefore(skipLink, document.body.firstChild);
 });
 
-// Advanced Features Toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.getElementById('toggleAdvancedFeatures');
-    const advancedFeatures = document.getElementById('advancedFeatures');
-    
-    if (toggleButton && advancedFeatures) {
-        toggleButton.addEventListener('click', function() {
-            const isShown = advancedFeatures.classList.contains('show');
-            
-            if (isShown) {
-                // Hide advanced features
-                advancedFeatures.classList.remove('show');
-                toggleButton.innerHTML = '<i class="fas fa-plus"></i><span>Odkryj Zaawansowane Funkcjonalności AI</span>';
-                toggleButton.classList.remove('active');
-            } else {
-                // Show advanced features
-                advancedFeatures.classList.add('show');
-                toggleButton.innerHTML = '<i class="fas fa-minus"></i><span>Ukryj Zaawansowane Funkcjonalności</span>';
-                toggleButton.classList.add('active');
-            }
-        });
-    }
-
-    // Comparison Toggle
-    const comparisonToggle = document.getElementById('toggleComparison');
-    const expandableComparison = document.getElementById('expandableComparison');
-    
-    if (comparisonToggle && expandableComparison) {
-        comparisonToggle.addEventListener('click', function() {
-            const isShown = expandableComparison.classList.contains('show');
-            
-            if (isShown) {
-                // Hide comparison
-                expandableComparison.classList.remove('show');
-                comparisonToggle.innerHTML = '<i class="fas fa-plus"></i><span>Zobacz Różnice</span>';
-                comparisonToggle.classList.remove('active');
-            } else {
-                // Show comparison
-                expandableComparison.classList.add('show');
-                comparisonToggle.innerHTML = '<i class="fas fa-minus"></i><span>Ukryj Różnice</span>';
-                comparisonToggle.classList.add('active');
-            }
-        });
-    }
-
-    // ROI Details Toggle
-    const roiToggle = document.getElementById('toggleRoiDetails');
-    const expandableRoi = document.getElementById('expandableRoi');
-    
-    if (roiToggle && expandableRoi) {
-        roiToggle.addEventListener('click', function() {
-            const isShown = expandableRoi.classList.contains('show');
-            
-            if (isShown) {
-                // Hide ROI details
-                expandableRoi.classList.remove('show');
-                roiToggle.innerHTML = '<i class="fas fa-plus"></i><span>Zobacz Szczegółowe Wyliczenia</span>';
-                roiToggle.classList.remove('active');
-            } else {
-                // Show ROI details
-                expandableRoi.classList.add('show');
-                roiToggle.innerHTML = '<i class="fas fa-minus"></i><span>Ukryj Szczegółowe Wyliczenia</span>';
-                roiToggle.classList.add('active');
-            }
-        });
-    }
-
-    // Features Details Toggle
-    const featuresToggle = document.getElementById('toggleFeatureDetails');
-    const expandableFeatures = document.getElementById('expandableFeatures');
-    
-    if (featuresToggle && expandableFeatures) {
-        featuresToggle.addEventListener('click', function() {
-            const isShown = expandableFeatures.classList.contains('show');
-            
-            if (isShown) {
-                // Hide feature details
-                expandableFeatures.classList.remove('show');
-                featuresToggle.innerHTML = '<i class="fas fa-plus"></i><span>Zobacz Wszystkie Funkcjonalności</span>';
-                featuresToggle.classList.remove('active');
-            } else {
-                // Show feature details
-                expandableFeatures.classList.add('show');
-                featuresToggle.innerHTML = '<i class="fas fa-minus"></i><span>Ukryj Funkcjonalności</span>';
-                featuresToggle.classList.add('active');
-            }
-        });
-    }
-});
-
 /* ===========================================
    BUSINESS TYPES INTERACTIVE FUNCTIONALITY
    =========================================== */
@@ -908,3 +907,163 @@ function showMessage(text, type) {
 }
 
 console.log('🎤 VoiceFlow AI - Landing Page Loaded Successfully!'); 
+
+/* ===========================================
+   MOBILE LAZY LOADING FUNCTIONALITY
+   =========================================== */
+function initMobileLazyLoading() {
+    // Only initialize if Intersection Observer is supported
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    
+                    // Replace data-src with src
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    
+                    // Add loaded class for animation
+                    img.classList.add('loaded');
+                    
+                    // Stop observing this image
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            // Load images 100px before they enter viewport
+            rootMargin: '100px 0px',
+            threshold: 0.01
+        });
+        
+        // Observe all images with data-src attribute
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+        
+        // Observe all images in carousel and business types
+        const carouselImages = document.querySelectorAll('.client-logo, .business-placeholder');
+        carouselImages.forEach(img => {
+            // Add loading attribute for better performance
+            img.setAttribute('loading', 'lazy');
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback for browsers without Intersection Observer
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            img.classList.add('loaded');
+        });
+    }
+}
+
+/* ===========================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   =========================================== */
+function initMobileOptimizations() {
+    // Optimize animations on mobile
+    if (window.innerWidth <= 768) {
+        // Reduce animation duration for better performance
+        const animatedElements = document.querySelectorAll('.hero-background, .pulse-ring, .typing-indicator');
+        animatedElements.forEach(element => {
+            element.style.animationDuration = '20s';
+        });
+        
+        // Pause carousel animation when not visible
+        const carousel = document.querySelector('.clients-carousel');
+        if (carousel) {
+            const carouselObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        carousel.style.animationPlayState = 'running';
+                    } else {
+                        carousel.style.animationPlayState = 'paused';
+                    }
+                });
+            });
+            carouselObserver.observe(carousel);
+        }
+        
+        // Optimize scroll performance
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(() => {
+                // Trigger any scroll-based animations here
+                updateScrollAnimations();
+            }, 16); // ~60fps
+        }, { passive: true });
+    }
+}
+
+function updateScrollAnimations() {
+    // Add scroll-based animations for mobile
+    const scrollY = window.pageYOffset;
+    const elements = document.querySelectorAll('.hero-background');
+    
+    elements.forEach(element => {
+        const speed = 0.5;
+        element.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+}
+
+/* ===========================================
+   MOBILE TOUCH OPTIMIZATIONS
+   =========================================== */
+function initTouchOptimizations() {
+    // Improve touch response for buttons
+    const touchElements = document.querySelectorAll('.btn, .nav-link, .business-type-item, .faq-question');
+    
+    touchElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        });
+        
+        element.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('touch-active');
+            }, 150);
+        });
+        
+        element.addEventListener('touchcancel', function() {
+            this.classList.remove('touch-active');
+        });
+    });
+    
+    // Optimize modal touch handling
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.addEventListener('touchmove', function(e) {
+            // Prevent background scrolling when modal is open
+            if (e.target === modal) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    });
+}
+
+/* ===========================================
+   INITIALIZE MOBILE ENHANCEMENTS
+   =========================================== */
+// Initialize mobile enhancements when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 768) {
+        initMobileOptimizations();
+        initTouchOptimizations();
+    }
+});
+
+// Re-initialize on window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+        initMobileOptimizations();
+        initTouchOptimizations();
+    }
+}); 
