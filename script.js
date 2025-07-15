@@ -908,3 +908,23 @@ function showMessage(text, type) {
 }
 
 console.log('🎤 VoiceFlow AI - Landing Page Loaded Successfully!'); 
+
+// Cookie banner integration
+function showCookieBanner() {
+    if (window.cookieBanner) {
+        window.cookieBanner.revokeConsent();
+    }
+}
+
+// Add click handler for cookie settings link
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieSettingsLinks = document.querySelectorAll('.cookie-settings-link');
+    cookieSettingsLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (window.cookieBanner) {
+                window.cookieBanner.revokeConsent();
+            }
+        });
+    });
+}); 
